@@ -111,6 +111,7 @@ subsets(regsubsets.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2
 Roachmode<-lm(Weight~Length3+Width,data=Roach)
 summary.lm(Roachmode)
 ```
-Through filtering out the Roach fish and only using numerical variables, we found that length3 and width were the best subset as weel as the the best 2 subset. 
+Through filtering out the Roach fish and only using numerical variables, we found that length3 and width were the best subset as well as the the best 2 subset. 
 
 ## Final Summary Statements
+By using the leap formula, we learned how to do multiple linear regression. We filtered the perch, bream, and roach fish into their own files. The perch fishes best subsets were the height and width as well as their best 2 subset was height and width. The breams best subset was height, length1, and width and the best 2 subset was length2 and height. Roaches best subset was width and length 3, the best 2 subset was the same as the best subset. 
