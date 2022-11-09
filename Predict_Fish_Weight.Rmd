@@ -35,6 +35,7 @@ Perch<-select(Perch, -Species)
 ```
 
 
+
 ### Best Models
 ```{r}
 regsubsets.out <-
@@ -59,15 +60,57 @@ Through filtering out the perch fish and only using numerical variables, we dete
 the best subset is the height and width and the best 2 subset is also the height and width
 
 ## Bream
+```{r}
+Bream<-filter(Fish, Species=="Bream")
+Bream<-select(Bream, -Species)
+```
 
 ### Best Models
+```{r}
+regsubsets.out <-
+    regsubsets(Weight ~ .,
+             data = Bream,
+               nbest = 1,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+
+summary.out <- summary(regsubsets.out)
+as.data.frame(summary.out$outmat)
+subsets(regsubsets.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2")
+```
 
 ### Best Two regressor model
+```{r}
+Breammode<-lm(Weight~Height+Width+Length1,data=Bream)
+summary.lm(Breammode)
+```
+Through filtering out the Bream fish and only using numerical variables, we discovered that the best subset is height, width, and length1. The best 2 subset was length2 and height. 
 
 ## Roach
-
+```{r}
+Roach<-filter(Fish, Species=="Roach")
+Roach<-select(Roach, -Species)
+```
 ### Best Models
+```{r}
+regsubsets.out <-
+    regsubsets(Weight ~ .,
+             data = Roach,
+               nbest = 1,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
 
+summary.out <- summary(regsubsets.out)
+as.data.frame(summary.out$outmat)
+subsets(regsubsets.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2")
+```
 ### Best Two regressor model
+```{r}
+Roachmode<-lm(Weight~Length3+Width,data=Roach)
+summary.lm(Roachmode)
+```
+Through filtering out the Roach fish and only using numerical variables, we found that length3 and width were the best subset as weel as the the best 2 subset. 
 
 ## Final Summary Statements
